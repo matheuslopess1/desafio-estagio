@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { FaSync } from "react-icons/fa"
-import { PeopleContext } from '../contexts'
+import { PeopleContext } from '../contexts/PeopleContext'
 import { getPeopleFromAPI } from '../services'
 
 export default function UpdateForm() {

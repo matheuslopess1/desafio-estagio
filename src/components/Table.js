@@ -1,5 +1,6 @@
-import { useContext, useMemo } from "react"
-import { PeopleContext, PEOPLE_PER_PAGE } from "../contexts"
+import { useContext, useMemo } from 'react'
+import { PeopleContext, PEOPLE_PER_PAGE } from '../contexts/PeopleContext'
+import Row from './Row'
 
 export default function Table () {
   const { people, pagination: { actualPage } } = useContext(PeopleContext)
@@ -9,7 +10,7 @@ export default function Table () {
     const indexOfFirstPerson = indexOfLastPerson - PEOPLE_PER_PAGE
     return people.slice(indexOfFirstPerson, indexOfLastPerson)
   }, [people, actualPage])
-  
+
   return (
     <div className="table-container">
       <table className="table is-fullwidth is-narrow">
@@ -23,15 +24,7 @@ export default function Table () {
             </tr>
         </thead>
         <tbody>
-          {peoplePaginated.map((person, index) => (
-            <tr key={`person-${index}`}>
-              <td><img src={person.photoURL} alt="" /></td>
-              <td>{person.firstName}</td>
-              <td>{person.lastName}</td>
-              <td>{person.age}</td>
-              <td>{person.city}</td>
-            </tr>
-          ))}
+          {peoplePaginated.map((person, index) => <Row key={`person-${index}`} person={person} />)}
         </tbody>
       </table>
     </div>

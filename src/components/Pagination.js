@@ -1,5 +1,5 @@
 import { useContext, useMemo } from "react"
-import { PeopleContext, PEOPLE_PER_PAGE } from "../contexts"
+import { PeopleContext, PEOPLE_PER_PAGE } from "../contexts/PeopleContext"
 
 export default function Pagination () {
     const { people, pagination } = useContext(PeopleContext)

@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react'
 import { getPeopleFromAPI } from './services'
-import { PeopleContext } from './contexts'
+import { PeopleContext } from './contexts/PeopleContext'
 import Container from './components/Container'
 import Header from './components/Header'
 import Table from './components/Table'
