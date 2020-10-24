@@ -11,12 +11,12 @@ export default function Form() {
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log('handleSubmit?')
     getPeopleFromAPI(amount).then(setPeople)
+    setAmount('')
   }
 
   return (
-    <form onSubmit={handleSubmit} className="pb-5">
+    <form onSubmit={handleSubmit}>
       <div className="field">
         <div className="field is-grouped">
           <div className="control">

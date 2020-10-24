@@ -10,10 +10,7 @@ export default function App() {
   const { setPeople } = useContext(PeopleContext)
   
   useEffect(() => {
-    getPeopleFromAPI().then(people => {
-      console.log(people)
-      setPeople(people)
-    })
+    getPeopleFromAPI().then(setPeople)
   }, [setPeople])
 
   return (
