@@ -9,9 +9,10 @@ export default function Table () {
     const indexOfFirstPerson = indexOfLastPerson - PEOPLE_PER_PAGE
     return people.slice(indexOfFirstPerson, indexOfLastPerson)
   }, [people, actualPage])
+  
   return (
     <div className="table-container">
-      <table className="table is-fullwidth">
+      <table className="table is-fullwidth is-narrow">
         <thead>
             <tr>
                 <th>Foto</th>
