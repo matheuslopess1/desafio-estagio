@@ -21,21 +21,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <img src="https://randomuser.me/api/portraits/thumb/women/96.jpg" />
-                            </td>
-                            <td style="vertical-align: middle;">Clémentine</td>
-                            <td style="vertical-align: middle;">Dupuis</td>
-                            <td style="vertical-align: middle;">51</td>
-                            <td style="vertical-align: middle;">Nantes</td>
-                        </tr>
+                    <tbody id="table-body">
                     </tbody>
                 </tbody>
             </table>
         </div>
     </div>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <script>
+        fetch('https://api.randomuser.me/?results=10')
+            .then(response =>
+                response.json().then(body => {
+                    const tableBodyElement = document.getElementById('table-body')
+                    for (const user of body.results) {
+                        const tableRowElement = document.createElement('tr')
+                        tableBodyElement.append(tableRowElement)
+                        
+                        const photoTableDataElement = document.createElement('td')
+                        tableRowElement.append(photoTableDataElement)
+
+                        const imageElement = document.createElement('img')
+                        photoTableDataElement.append(imageElement)
+                        imageElement.setAttribute('src', user.picture.thumbnail)
+                        
+                        const { name: { first, last }, dob: { age }, location: { city } } = user
+
+                        for (const data of [first, last, age, city]) {
+                            const tableDataElement = document.createElement('td')
+                            tableRowElement.append(tableDataElement)
+                            tableDataElement.style.verticalAlign = 'middle'
+                            const dataTextNode = document.createTextNode(data)
+                            tableDataElement.append(dataTextNode)
+                        }
+                    }
+                })
+            )
+            .catch(console.error)
+    </script>
 </body>
 </html>
