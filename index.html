@@ -11,13 +11,30 @@
         <div class="container">
             <h1 class="title">Listagem de Pessoas</h1>
             <h2 class="subtitle">Desafio para o Estágio na Moovery.</h2>
-            <div class="mb-3">
-                <button class="button is-white has-text-primary" onclick="getRandomUsers()">
-                    <span class="icon is-small">
-                        <i class="fas fa-sync"></i>
-                    </span>
-                    <span>Atualizar</span>
-                </button>
+            <div class="pb-5">
+                <div class="field">
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <div class="select">
+                                <select id="people-amount">
+                                    <option value="">Nº de Pessoas</option>
+                                    <option>10</option>
+                                    <option>25</option>
+                                    <option>50</option>
+                                    <option>100</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control">
+                            <button class="button is-primary" onclick="getRandomUsers()">
+                                <span class="icon is-small">
+                                    <i class="fas fa-sync"></i>
+                                </span>
+                                <span>Atualizar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <table class="table is-fullwidth">
                 <thead>
@@ -38,9 +55,16 @@
     </div>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     <script>
-        const getRandomUsers = () => fetch('https://api.randomuser.me/?results=10')
+        const getRandomUsers = () => {
+            const peopleAmountSelectElement = document.getElementById('people-amount')
+            const peopleAmountSelectedOptionIndex = peopleAmountSelectElement.selectedIndex
+            const peopleAmountSelectedOption = peopleAmountSelectElement[peopleAmountSelectedOptionIndex]
+            const peopleAmount = peopleAmountSelectedOption.value || '10'
+
+            fetch(`https://api.randomuser.me/?results=${peopleAmount}`)
             .then(response =>
                 response.json().then(body => {
+                    peopleAmountSelectElement.selectedIndex = 0
                     const tableBodyElement = document.getElementById('table-body')
                     while (tableBodyElement.childElementCount > 0)
                         tableBodyElement.removeChild(tableBodyElement.lastElementChild)
@@ -68,6 +92,7 @@
                 })
             )
             .catch(console.error)
+        }
 
             getRandomUsers()
     </script>
