@@ -3,7 +3,7 @@ import { FaSync } from "react-icons/fa"
 import { PeopleContext } from '../contexts'
 import { getPeopleFromAPI } from '../services'
 
-export default function Form() {
+export default function UpdateForm() {
   const [amount, setAmount] = useState('')
 
   const handleChange = event => setAmount(event.target.value)

@@ -4,7 +4,7 @@ import { PeopleContext } from './contexts'
 import Container from './components/Container'
 import Header from './components/Header'
 import Table from './components/Table'
-import Form from './components/Form'
+import UpdateForm from './components/UpdateForm'
 
 export default function App() {
   const { setPeople } = useContext(PeopleContext)
@@ -16,7 +16,7 @@ export default function App() {
   return (
       <Container>
         <Header />
-        <Form />
+        <UpdateForm />
         <Table />
       </Container>
   )
